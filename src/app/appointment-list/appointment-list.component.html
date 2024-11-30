@@ -1,3 +1,29 @@
-<p>{{appointment.id}}</p>
-<p>{{appointment.title}}</p>
-<p>{{appointment.date}}</p>
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <div class="mb-4">
+        <input [(ngModel)]="newAppointmentTitle" placeholder="Appointment Description"
+            class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200" />
+    </div>
+    <div class="mb-4">
+        <input [(ngModel)]="newAppointmentDate" type="date"
+            class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200" />
+    </div>
+    <button (click)="addAppointment()" class="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+        Add
+    </button>
+</div>
+
+<ul class="max-w-md mx-auto mt-6 space-y-4">
+    @for (appointment of appointments; track $index) {
+    <li class="flex justify-between items-center p-4 bg-gray-100 rounded-md shadow">
+        <span class="text-gray-800">
+            {{appointment.title}}
+            <span class="text-gray-500 text-sm">
+                {{appointment.date | date:'dd.MM.yy'}}
+            </span>
+        </span>
+        <button (click)="deleteAppointment($index)" class="p-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+            Delete
+        </button>
+    </li>
+    }
+</ul>
